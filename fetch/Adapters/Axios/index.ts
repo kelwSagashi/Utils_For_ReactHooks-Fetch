@@ -1,8 +1,9 @@
-import { HttpClient } from "@utils/fetch/HttpClient";
-import { HttpRequest, HttpResponse } from "@utils/fetch/types";
-import axios, { AxiosInstance, AxiosResponse } from "axios";
 
-export class UseAxiosAdapter<T = any> extends HttpClient<T, AxiosInstance, AxiosResponse<T>> {
+import axios, { AxiosInstance, AxiosResponse } from "axios";
+import { HttpClient } from "../../HttpClient";
+import { HttpRequest, HttpResponse } from "../../types";
+
+export class UseAxiosAdapter<T = unknown> extends HttpClient<T, AxiosInstance, AxiosResponse<T>> {
 
     constructor(API_URL: string) {
         super();
@@ -13,6 +14,7 @@ export class UseAxiosAdapter<T = any> extends HttpClient<T, AxiosInstance, Axios
     }
 
     async request(data: HttpRequest): Promise<HttpResponse<T>> {
+        // eslint-disable-next-line no-async-promise-executor
         return new Promise(async (resolve, reject) => {
             this.loading = true;
             try {

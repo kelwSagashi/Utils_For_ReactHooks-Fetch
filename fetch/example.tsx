@@ -32,3 +32,5 @@ function FetchExample(){
         </>
     )
 }
+
+export FetchExample;
